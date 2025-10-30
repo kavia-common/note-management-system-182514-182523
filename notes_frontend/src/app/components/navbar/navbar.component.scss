@@ -1,0 +1,63 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.05);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+}
+
+.brand .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  box-shadow: 0 6px 14px rgba(245, 158, 11, 0.25);
+}
+
+.actions .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.35);
+  background: #f59c0b;
+}
+
+@media (max-width: 480px) {
+  .brand {
+    font-size: 0.95rem;
+  }
+  .actions .btn {
+    padding: 0.45rem 0.65rem;
+  }
+}

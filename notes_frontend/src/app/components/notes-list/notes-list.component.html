@@ -1,0 +1,35 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <h1 class="title">Your Notes</h1>
+      <p class="subtitle">Keep track of ideas, todos, and documentation.</p>
+    </div>
+    <a routerLink="/notes/new" class="btn btn-accent" aria-label="Create new note">+ New</a>
+  </header>
+
+  <div class="grid" *ngIf="(notes$ | async) as notes; else loading">
+    <div *ngIf="notes.length === 0" class="empty">
+      <p>No notes yet. Click “New” to create your first note.</p>
+    </div>
+    <app-note-card
+      *ngFor="let n of notes"
+      [note]="n"
+      (delete)="onRequestDelete($event)">
+    </app-note-card>
+  </div>
+
+  <ng-template #loading>
+    <div class="empty"><p>Loading notes…</p></div>
+  </ng-template>
+
+  <div class="backdrop" *ngIf="confirmDeleteId() as id" role="dialog" aria-modal="true" aria-label="Confirm deletion">
+    <div class="dialog">
+      <h2>Delete note?</h2>
+      <p>This action cannot be undone.</p>
+      <div class="dialog-actions">
+        <button class="btn btn-secondary" (click)="cancelDeletion()" aria-label="Cancel deletion">Cancel</button>
+        <button class="btn btn-danger" (click)="confirmDeletion()" aria-label="Confirm deletion">Delete</button>
+      </div>
+    </div>
+  </div>
+</section>

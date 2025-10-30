@@ -1,0 +1,12 @@
+<article class="card" [attr.aria-label]="'Note ' + note.title">
+  <header class="card-header">
+    <a class="title" [routerLink]="['/notes', note.id]" aria-label="Open note">{{ note.title || 'Untitled' }}</a>
+    <div class="meta">Updated {{ note.updatedAt | date:'medium' }}</div>
+  </header>
+  <p class="excerpt">{{ excerpt(note.content) }}</p>
+  <footer class="card-actions">
+    <a class="btn btn-primary" [routerLink]="['/notes', note.id]" aria-label="View">View</a>
+    <a class="btn btn-secondary" [routerLink]="['/notes', note.id]" aria-label="Edit">Edit</a>
+    <button class="btn btn-danger" type="button" (click)="requestDelete()" aria-label="Delete">Delete</button>
+  </footer>
+</article>

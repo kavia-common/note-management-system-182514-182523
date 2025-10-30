@@ -1,0 +1,39 @@
+<section class="page">
+  <header class="page-header">
+    <div class="breadcrumbs">
+      <a routerLink="/" aria-label="Back to list">← Back</a>
+    </div>
+    <div class="actions">
+      <button class="btn btn-secondary" type="button" (click)="togglePreview()" aria-label="Toggle preview">
+        {{ preview() ? 'Edit' : 'Preview' }}
+      </button>
+      <button class="btn btn-primary" type="button" (click)="save()" aria-label="Save note">Save</button>
+    </div>
+  </header>
+
+  <div class="editor">
+    <input
+      class="title-input"
+      type="text"
+      placeholder="Title"
+      [value]="title()"
+      (input)="title.set(($any($event.target).value || ''))"
+      aria-label="Note title" />
+
+    <div class="editor-area" *ngIf="!preview(); else previewTpl">
+      <textarea
+        class="content-input"
+        placeholder="Write your note here…"
+        [value]="content()"
+        (input)="content.set(($any($event.target).value || ''))"
+        aria-label="Note content"></textarea>
+    </div>
+
+    <ng-template #previewTpl>
+      <div class="preview" aria-label="Content preview">
+        <h2 class="preview-title">{{ title() || 'Untitled' }}</h2>
+        <pre class="preview-content">{{ content() || 'Nothing to preview yet.' }}</pre>
+      </div>
+    </ng-template>
+  </div>
+</section>
